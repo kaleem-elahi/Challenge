@@ -38,40 +38,46 @@
   justify-content: space-between;
 }
 
-.section .detail-root .secion-left {
+.section .detail-root .section-left {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   flex-grow: 1;
   margin-right: 20px;
 }
-.section .detail-root .secion-left .secion-left-item {
+.section .detail-root .section-left .section-left-item {
   display: flex;
   justify-content: space-between;
   padding: 10px;
 }
-.section .detail-root .secion-left .item-unique-count {
+.section .detail-root .section-left .item-unique-count {
   font-size: 30px;
   font-weight: 800;
   font-family: Arial, Helvetica, sans-serif;
 }
-.section .detail-root .secion-left .item-unique {
+.section .detail-root
+.section-left .item-unique {
   font-size: 16px;
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
 }
-.section .detail-root .secion-left .secion-left-item .item-name {
+.section .detail-root .section-left
+.section-left-item .item-name {
   font-size: 16px;
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.section .detail-root .secion-left .secion-left-item .item-percent {
+.section .detail-root
+.section-left .section-left-item .item-percent {
   font-size: 16px;
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.mt-10 {
+  margin-top: 10px;
+}
 
 .root {
   padding: 0 30px;
@@ -101,6 +107,3 @@
   background-color: #cf0707;
 }
 
-.mt-10 {
-  margin-top: 10px;
-}

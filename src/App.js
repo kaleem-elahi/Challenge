@@ -1,48 +1,39 @@
-import { Component } from 'react';
+import React, { useEffect } from 'react';
 import {VisualCard} from "./component/VisualCard";
 import Papa from 'papaparse';
 import "./asset/main.css";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      data: []
-    }
-    
-  }
+function App() {
+
+  useEffect(() => {
+    getData()
+  }) // [] means just do this once, after initial render
 
 
-  componentWillMount() {
-    this.getCsvData();
-  }
-
-  fetchCsv() {
-    return fetch('./data/data.csv').then(function (response) {
-        let reader = response.body.getReader();
-        let decoder = new TextDecoder('utf-8');
-
-        return reader.read().then(function (result) {
-            return decoder.decode(result.value);
-        });
-    });
-  }
-
-async getCsvData() {
-  let csvData = await this.fetchCsv();
-
-  Papa.parse(csvData, {
-      complete: this.getData
-  });
+  async function getData(artist) {
+    const data = Papa.parse(await fetchCsv(), {
+      header: true,
+      dynamicTyping: true,
+      complete: function(results) {
+        console.log(results);
+      }
+    }, [getData]);
+  
+    console.log(data); // result of CSV in JSON 
+    return data;
 }
 
-getData = (result) => {
-  this.setState({data: result.data});
+async function fetchCsv() {
+    const response = await fetch('data/data.csv'); // Fetching from PUBLIC folder
+    const reader = response.body.getReader();
+    const result = await reader.read();
+    const decoder = new TextDecoder('utf-8');
+    const csv = await decoder.decode(result.value);
+    console.log('csv', csv);
+    return csv;
 }
 
-render() {
-  console.log(this.state)
   return (
     <div className="app">
       <div className="section">
@@ -174,8 +165,6 @@ render() {
         </div>
       </div>
     </div>);
-
-}
 }
 
 export default App;
